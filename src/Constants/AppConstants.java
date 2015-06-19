@@ -32,20 +32,36 @@ public class AppConstants {
 			"http://news.livedoor.com/rss/summary/52.xml",
 			"http://news.livedoor.com/topics/rss/gourmet.xml",
 			"http://news.livedoor.com/topics/rss/love.xml",
-			"http://news.livedoor.com/topics/rss/trend.xml" };
+			"http://news.livedoor.com/topics/rss/trend.xml" 
+	};
+	public static final String TOP = "top";
+	public static final String NATIONAL = "national";
+	public static final String INTERNATIONAL = "INTERNATIONAL";
+	public static final String ECONOMIC = "economic";
+	public static final String SPORTS = "sports";
+	public static final String ENTERTAINMENT = "entertainment";
+	public static final String MOVIE = "movie";
+	public static final String FOOD = "food";
+	public static final String WOMEN = "women";
+	public static final String TREND = "trend";
 
 	public static final HashMap<String, String> URL_MAP = new HashMap<String, String>() {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		{
-			put("top", "http://news.livedoor.com/topics/rss/top.xml");
-			put("national", "http://news.livedoor.com/topics/rss/dom.xml");
-			put("international", "http://news.livedoor.com/topics/rss/int.xml");
-			put("economic", "http://news.livedoor.com/topics/rss/ent.xml");
-			put("sports", "http://news.livedoor.com/topics/rss/spo.xml");
-			put("entertainment","http://news.livedoor.com/topics/rss/ent.xml");
-			put("movie","http://news.livedoor.com/topics/rss/spo.xml");
-			put("food","http://news.livedoor.com/topics/rss/gourmet.xml");
-			put("women","http://news.livedoor.com/topics/rss/love.xml");
-			put("trend","http://news.livedoor.com/topics/rss/trend.xml");
+			put(TOP, "http://news.livedoor.com/topics/rss/top.xml");
+			put(NATIONAL, "http://news.livedoor.com/topics/rss/dom.xml");
+			put(INTERNATIONAL, "http://news.livedoor.com/topics/rss/int.xml");
+			put(ECONOMIC, "http://news.livedoor.com/topics/rss/ent.xml");
+			put(SPORTS, "http://news.livedoor.com/topics/rss/spo.xml");
+			put(ENTERTAINMENT,"http://news.livedoor.com/topics/rss/ent.xml");
+			put(MOVIE,"http://news.livedoor.com/topics/rss/spo.xml");
+			put(FOOD,"http://news.livedoor.com/topics/rss/gourmet.xml");
+			put(WOMEN,"http://news.livedoor.com/topics/rss/love.xml");
+			put(TREND,"http://news.livedoor.com/topics/rss/trend.xml");
 		}
 	};
 	

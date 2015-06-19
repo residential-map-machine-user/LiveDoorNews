@@ -2,71 +2,76 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="Beans.ItemBean"%>
 <%@ page import="java.util.*"%>
+<%@ page import="Constants.*"%>
+<%@ page import="Utils.*"%>
+
 <!DOCTYPE html>
 <html>
 <body>
 	<jsp:include page="/WEB-INF/jsp/header.jsp" />
+
 	<%
-		String uri = request.getRequestURI();
-	%>
-	<%
-		ArrayList<ItemBean> itemList = new ArrayList<ItemBean>();
-		String action = (String) request.getAttribute("action");
-		itemList = (ArrayList<ItemBean>) request.getAttribute(action);
+		Util.l("ok1");
+		String actionName = (String) request.getAttribute("ACTION");
+		Util.l("ok2" + actionName);
+		ArrayList<ItemBean> contents = new ArrayList<ItemBean>();
+		Util.l("ok3");
+		contents = (ArrayList<ItemBean>) request.getAttribute(actionName);
+		Util.l("ok4");
 	%>
 	<div class="content">
 		<div class="w-section section" id="about">
 			<div class="w-container">
 				<div class="section-title-group">
-					<h2 class="section-heading centered"><%=action%>&nbsp;&nbsp;&nbsp;News
+					<h2 class="section-heading centered"><%=actionName%>&nbsp;&nbsp;&nbsp;News
 					</h2>
 					<div class="section-subheading center">broadcasted latest
 						news</div>
 				</div>
 				<%
-					for (ItemBean item : itemList) {
+					if (contents != null) {
+						for (ItemBean item : contents) {
 				%>
 				<div class="col-spc-wrapper">
 					<div class="col-spc">
-						<h1><%=item.getTitle()%></h1>
-						<%
-							if (item.getDescription().equals("記事を読む")) {
-						%>
+						<h1><%=item.getTitle()%></h>
+							<p><%=item.getArticle()%></p>
+							<a  class="link" href="<%=item.getUrl()%>">掲載元のページへ</a>
 
-						<a href="<%=item.getLink()%>">Text Link</a>
-						<%
-							} else {
-						%>
-						<p><%=item.getDescription()%></p>
-						<a href="<%=item.getLink()%>">Text Link</a>
-						<%
-							}
-						%>
 
-						<%
-							List<String> relatedLink = item.getRelatedLinks();
-								if (relatedLink != null && relatedLink.size() > 0) {
-						%>
-						<h1>関連記事</h1>
-						<div class="w-row">
 							<%
-								for (int i = 0; i < relatedLink.size(); i++) {
+								List<ItemBean> relatedLink = item.getRelatedLink();
 							%>
-							<div class="w-col w-col-3 col-spc">
-								<img class="grid-image" src="images/feather-05-black.svg"
-									width="80">
-								<h3>
-									記事<%=i + 1%></h3>
-								<a class="link" href="<%=relatedLink.get(0)%>">Text Link</a>
+							<h1>関連記事</h1>
+							<div class="w-row">
+								<%
+									if (relatedLink != null) {
+												for (int i = 3; i < relatedLink.size(); i=i+3) {
+								%>
+								<div class="w-col w-col-3 col-spc">
+									<img class="grid-image" src="<%=request.getContextPath()%>/res/images/feather-05-black.svg"
+										width="80">
+									<h6>記事</h3>
+									<a class="link"style="text-decoration:none;font-size:10px;" href="<%=relatedLink.get(i).getUrl()%>">掲載元のページへ</a>
+								</div>
+								<%
+									}
+								%>
+								<%
+									} else {
+								%>
+								<p class="col-3">通信エラーです<p>
+								<%
+									}
+								%>
 							</div>
-							<%
-								}
-							%>
-						</div>
 					</div>
 				</div>
 				<%
 					}
+					} else {
+				%>
+				<%
 					}
 				%>
 			</div>

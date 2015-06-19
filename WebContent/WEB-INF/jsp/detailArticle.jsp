@@ -31,19 +31,19 @@
     <div class="w-section section section-gray" id="contact">
       <h1>関連記事</h1>
       <div class="w-row">
-        <div class="w-col w-col-3 col-spc"><img class="grid-image" src="images/feather-12-black.svg" width="100">
+        <div class="w-col w-col-3 col-spc"><img class="grid-image" src="<%=request.getContextPath()%>/res/images/feather-12-black.svg" width="100">
           <h3>国内</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p><a class="link" href="#">Text Link</a>
         </div>
-        <div class="w-col w-col-3 col-spc"><img class="grid-image" src="images/feather-05-black.svg" width="100">
+        <div class="w-col w-col-3 col-spc"><img class="grid-image" src="<%=request.getContextPath()%>/res/images/feather-05-black.svg" width="100">
           <h3>海外</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p><a class="link" href="#">Text Link</a>
         </div>
-        <div class="w-col w-col-3 col-spc"><img class="grid-image" src="images/feather-24-black.svg" width="100">
+        <div class="w-col w-col-3 col-spc"><img class="grid-image" src="<%=request.getContextPath()%>/res/images/feather-24-black.svg" width="100">
           <h3>IT•経済</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p><a class="link" href="#">Text Link</a>
         </div>
-        <div class="w-col w-col-3 col-spc"><img class="grid-image" src="images/feather-66-black.svg" width="100">
+        <div class="w-col w-col-3 col-spc"><img class="grid-image" src="<%=request.getContextPath()%>/res/images/feather-66-black.svg" width="100">
           <h3>芸能</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p><a class="link" href="#">Text Link</a>
         </div>

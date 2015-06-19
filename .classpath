@@ -13,11 +13,12 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/Users/yukimatsuyama/eclipse_projects/RSSReader490/lucene-4.9.0/core/lucene-core-4.9.0.jar"/>
-	<classpathentry kind="lib" path="/Users/yukimatsuyama/eclipse_projects/RSSReader490/lucene-4.9.0/analysis/common/lucene-analyzers-common-4.9.0.jar"/>
-	<classpathentry kind="lib" path="/Users/yukimatsuyama/eclipse_projects/RSSReader490/lucene-4.9.0/queryparser/lucene-queryparser-4.9.0.jar"/>
-	<classpathentry kind="lib" path="/Users/yukimatsuyama/eclipse_projects/RSSReader490/lucene-4.9.0/demo/lucene-demo-4.9.0.jar"/>
-	<classpathentry kind="lib" path="/Users/yukimatsuyama/eclipse_projects/RSSReader490/lucene-gosen-e8ee1acbdaa341028b28e736ae9090b5dd7c9301/dist/lucene-gosen-4.9.0-ipadic.jar"/>
 	<classpathentry kind="lib" path="/Users/yukimatsuyama/tomcat7/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/lucene-analyzers-common-4.9.0.jar"/>
+	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/lucene-core-4.9.0.jar"/>
+	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/lucene-gosen-4.9.0-ipadic.jar"/>
+	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/lucene-queries-4.9.0.jar"/>
+	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/lucene-queryparser-4.9.0.jar"/>
+	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/jaunt1.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

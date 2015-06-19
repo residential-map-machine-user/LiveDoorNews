@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import sun.org.mozilla.javascript.internal.json.JsonParser.ParseException;
 import BaseClasses.BaseController;
 import Beans.RequestURIBean;
 import Utils.Util;
 
 public class FrontControllerServlet extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 
 	 */
@@ -32,6 +36,7 @@ public class FrontControllerServlet extends HttpServlet {
 		RequestURIBean uriObj = null;
 		uriObj = spliteURIToArray(request);
 		// リクエストされたコントロラーを取得
+		@SuppressWarnings("rawtypes")
 		Class controllerClass = getClass(uriObj);
 		if (controllerClass != null) {
 			try {
@@ -85,7 +90,7 @@ public class FrontControllerServlet extends HttpServlet {
 			SecurityException, IllegalAccessException,
 			IllegalArgumentException, InvocationTargetException {
 		// 実行するメソッドの型指定
-		request.setAttribute("action", uriObj.getActionPath());
+		request.setAttribute("ACTION", uriObj.getActionPath());
 		Method actionMethod = controllerClass.getMethod(
 				convertToActionName(uriObj.getActionPath()),
 				HttpServletRequest.class, HttpServletResponse.class);
@@ -98,11 +103,13 @@ public class FrontControllerServlet extends HttpServlet {
 	 * @param request
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	private Class getClass(RequestURIBean uriObj) {
 		String className = convertToControllerName(uriObj.getControllerPath());
 		try {
 			// クラスを取得して返す
-			if(className.equals("NewsController") || className.equals("IndexController")){
+			if (className.equals("NewsController")
+					|| className.equals("IndexController")) {
 				return Class.forName("Controllers." + className);
 			}
 		} catch (ClassNotFoundException notFoundException) {

@@ -2,68 +2,191 @@ package Controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.lucene.queryparser.classic.ParseException;
-
 import BaseClasses.BaseController;
 import Beans.ItemBean;
 import Constants.AppConstants;
-import Utils.RSSReader;
-import Utils.SearchIndex;
+import Utils.ParseText;
+import Utils.RelatedArticle;
 
 public class NewsController extends BaseController {
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response){
+	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			request.getServletContext().getRequestDispatcher(AppConstants.FOWARD_PATH.CONST_INDEX_JSP).forward(request, response);
+			ParseText parseObj = new ParseText();
+			HashMap<String,String>contentsMap = new HashMap<String, String>();
+			contentsMap = parseObj.parseXml(AppConstants.URL_MAP.get(AppConstants.TOP));
+			request.setAttribute(AppConstants.TOP, contentsMap);
+			request.getServletContext()
+					.getRequestDispatcher(
+							AppConstants.FOWARD_PATH.CONST_INDEX_JSP)
+					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void foodAction(HttpServletRequest request, HttpServletResponse response){
+
+	public void foodAction(HttpServletRequest request,
+			HttpServletResponse response) {
 		try {
-			//[TOOD]ここでグルメという文字を取得する
-			request.getRequestURI();
-			//[TODO]文字を取得したらUtilのRssReaderを使ってデータを取得する.
-			//[TODO]取得したらattributeに保存してあげるできればbeanのリストが望ましいと考えられる.
-			RSSReader rssObj = new RSSReader();
-			List<ItemBean> itemList = new ArrayList<>();
-			itemList = rssObj.writeFeed("food");
-//				try {
-//					for(ItemBean item:itemList){
-//					SearchIndex searchObj = new SearchIndex();
-//					List<String> relatedLinks;
-//					relatedLinks = searchObj.searchIndex("区");
-//					item.setRelatedLinks(relatedLinks);
-//					}
-//				} catch (ParseException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-			request.setAttribute("food",itemList);
-			request.getServletContext().getRequestDispatcher(AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP).forward(request, response);
+			RelatedArticle relatedObj = new RelatedArticle();
+			ArrayList<ItemBean> contentsList = relatedObj
+					.run(AppConstants.URL_MAP.get(AppConstants.FOOD));
+			request.setAttribute(AppConstants.FOOD, contentsList);
+			request.getServletContext()
+					.getRequestDispatcher(
+							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
+					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void Action(HttpServletRequest request, HttpServletResponse response){
+
+	public void topAction(HttpServletRequest request,
+			HttpServletResponse response) {
 		try {
-			//[TOOD]ここでグルメという文字を取得する
-			request.getRequestURI();
-			//[TODO]文字を取得したらUtilのRssReaderを使ってデータを取得する.
-			//[TODO]取得したらattributeに保存してあげるできればbeanのリストが望ましいと考えられる.
-			RSSReader rssObj = new RSSReader();
-			List<ItemBean> itemList = new ArrayList<>();
-			itemList = rssObj.writeFeed("food");
-			request.setAttribute("food",itemList);
-			request.getServletContext().getRequestDispatcher(AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP).forward(request, response);
+			RelatedArticle relatedObj = new RelatedArticle();
+			ArrayList<ItemBean> contentsList = relatedObj
+					.run(AppConstants.URL_MAP.get(AppConstants.TOP));
+			request.setAttribute(AppConstants.TOP, contentsList);
+			request.getServletContext()
+					.getRequestDispatcher(
+							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
+					.forward(request, response);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void nationalAction(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			RelatedArticle relatedObj = new RelatedArticle();
+			ArrayList<ItemBean> contentsList = relatedObj
+					.run(AppConstants.URL_MAP.get(AppConstants.NATIONAL));
+			request.setAttribute(AppConstants.NATIONAL, contentsList);
+			request.getServletContext()
+					.getRequestDispatcher(
+							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
+					.forward(request, response);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void internationalAction(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			RelatedArticle relatedObj = new RelatedArticle();
+			ArrayList<ItemBean> contentsList = relatedObj
+					.run(AppConstants.URL_MAP.get(AppConstants.INTERNATIONAL));
+			request.setAttribute(AppConstants.INTERNATIONAL, contentsList);
+			request.getServletContext()
+					.getRequestDispatcher(
+							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
+					.forward(request, response);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void economicAction(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			RelatedArticle relatedObj = new RelatedArticle();
+			ArrayList<ItemBean> contentsList = relatedObj
+					.run(AppConstants.URL_MAP.get(AppConstants.ECONOMIC));
+			request.setAttribute(AppConstants.ECONOMIC, contentsList);
+			request.getServletContext()
+					.getRequestDispatcher(
+							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
+					.forward(request, response);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void sportsAction(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			RelatedArticle relatedObj = new RelatedArticle();
+			ArrayList<ItemBean> contentsList = relatedObj
+					.run(AppConstants.URL_MAP.get(AppConstants.SPORTS));
+			request.setAttribute(AppConstants.SPORTS, contentsList);
+			request.getServletContext()
+					.getRequestDispatcher(
+							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
+					.forward(request, response);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void movieAction(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			RelatedArticle relatedObj = new RelatedArticle();
+			ArrayList<ItemBean> contentsList = relatedObj
+					.run(AppConstants.URL_MAP.get(AppConstants.MOVIE));
+			request.setAttribute(AppConstants.MOVIE, contentsList);
+			request.getServletContext()
+					.getRequestDispatcher(
+							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
+					.forward(request, response);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void entertainmentAction(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			RelatedArticle relatedObj = new RelatedArticle();
+			ArrayList<ItemBean> contentsList = relatedObj
+					.run(AppConstants.URL_MAP.get(AppConstants.ENTERTAINMENT));
+			request.setAttribute(AppConstants.ENTERTAINMENT, contentsList);
+			request.getServletContext()
+					.getRequestDispatcher(
+							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
+					.forward(request, response);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void womenAction(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			RelatedArticle relatedObj = new RelatedArticle();
+			ArrayList<ItemBean> contentsList = relatedObj
+					.run(AppConstants.URL_MAP.get(AppConstants.WOMEN));
+			request.setAttribute(AppConstants.WOMEN, contentsList);
+			request.getServletContext()
+					.getRequestDispatcher(
+							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
+					.forward(request, response);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void trendAction(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			RelatedArticle relatedObj = new RelatedArticle();
+			ArrayList<ItemBean> contentsList = relatedObj
+					.run(AppConstants.URL_MAP.get(AppConstants.TREND));
+			request.setAttribute(AppConstants.TREND, contentsList);
+			request.getServletContext()
+					.getRequestDispatcher(
+							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
+					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
