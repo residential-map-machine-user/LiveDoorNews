@@ -27,10 +27,10 @@
 	});
 </script>
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/resjs/webflow.js"></script>
+	src="<%=request.getContextPath()%>/res/js/webflow.js"></script>
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/resjs/modernizr.js"></script>
-<link rel="shortcut icon" type="image/x-icon"
+	src="<%=request.getContextPath()%>/res/js/modernizr.js"></script>
+<link rel="shortcut icon" type="<%=request.getContextPath() %>/res/image/x-icon"
 	href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
 <link rel="apple-touch-icon"
 	href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
@@ -58,4 +58,6 @@
 	</div>
 	<div class="w-hidden-medium w-hidden-small w-hidden-tiny social-footer"></div>
 </div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="text/javascript" src="<%=request.getContextPath() %>/res/js/webflow.js"></script>
 </html>
