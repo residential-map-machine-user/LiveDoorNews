@@ -14,11 +14,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="/Users/yukimatsuyama/tomcat7/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/lucene-analyzers-common-4.9.0.jar"/>
-	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/lucene-core-4.9.0.jar"/>
-	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/lucene-gosen-4.9.0-ipadic.jar"/>
-	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/lucene-queries-4.9.0.jar"/>
-	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/lucene-queryparser-4.9.0.jar"/>
-	<classpathentry kind="lib" path="/Users/yukimatsuyama/Desktop/jaunt1.0.jar"/>
+	<classpathentry kind="lib" path="jar_library"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

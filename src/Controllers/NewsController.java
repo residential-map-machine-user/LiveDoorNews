@@ -3,7 +3,6 @@ package Controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +20,7 @@ public class NewsController extends BaseController {
 		try {
 			ParseText parseObj = new ParseText();
 			HashMap<String,String>contentsMap = new HashMap<String, String>();
-			contentsMap = parseObj.parseXml(AppConstants.URL_MAP.get(AppConstants.TOP));
+			contentsMap = parseObj.parseXmlmod(AppConstants.XML_ARRAY[0]);
 			request.setAttribute(AppConstants.TOP, contentsMap);
 			request.getServletContext()
 					.getRequestDispatcher(
@@ -29,6 +28,7 @@ public class NewsController extends BaseController {
 					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+			goError(request,response);
 		}
 	}
 
@@ -45,6 +45,7 @@ public class NewsController extends BaseController {
 					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+			goError(request,response);
 		}
 	}
 
@@ -61,6 +62,7 @@ public class NewsController extends BaseController {
 					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+			goError(request,response);
 		}
 	}
 
@@ -77,6 +79,7 @@ public class NewsController extends BaseController {
 					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+			goError(request,response);
 		}
 	}
 
@@ -93,6 +96,7 @@ public class NewsController extends BaseController {
 					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+			goError(request,response);
 		}
 	}
 
@@ -109,6 +113,7 @@ public class NewsController extends BaseController {
 					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+			goError(request,response);
 		}
 	}
 
@@ -125,6 +130,7 @@ public class NewsController extends BaseController {
 					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+			goError(request,response);
 		}
 	}
 
@@ -141,6 +147,7 @@ public class NewsController extends BaseController {
 					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+			goError(request,response);
 		}
 	}
 
@@ -157,6 +164,7 @@ public class NewsController extends BaseController {
 					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+			goError(request,response);
 		}
 	}
 
@@ -173,6 +181,7 @@ public class NewsController extends BaseController {
 					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+			goError(request,response);
 		}
 	}
 
@@ -189,6 +198,7 @@ public class NewsController extends BaseController {
 					.forward(request, response);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+			goError(request,response);
 		}
 	}
 }

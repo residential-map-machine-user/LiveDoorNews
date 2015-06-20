@@ -1,6 +1,7 @@
 package Utils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import com.jaunt.Element;
@@ -42,6 +43,27 @@ public class ParseText {
 		return item;
 	}
 	
+	public HashMap<String, String> parseXmlmod(String url) {
+		HashMap<String, String> item = new HashMap<>();
+		try {
+			UserAgent userAgent = new UserAgent();
+			userAgent.visit(url);
+			Elements titles = userAgent.doc.findEach("<item>").findEach(
+					"<title>");
+			Elements guids = userAgent.doc.findEach("<item>")
+					.findEach("<guid>");
+			List<Element>titleList = titles.toList();
+			List<Element>guidList = guids.toList();
+			for (int i = 0; i <titleList.size();i++) {
+				Util.l("title" + i + titleList.get(i).getText());
+				Util.l("url" + i + guidList.get(i).getText());
+				item.put(titleList.get(i).getText(), guidList.get(i).getText());
+			}
+		} catch (JauntException e) {
+			System.err.println(e);
+		}
+		return item;
+	}
 	/**
 	 * していされたURLの記事を文字返す
 	 * @param url

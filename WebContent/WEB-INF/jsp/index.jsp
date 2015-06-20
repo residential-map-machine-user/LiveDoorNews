@@ -30,7 +30,7 @@
 				<div class="w-row">
 					<%
 						int i = 0;
-						for (String value : itemMap.values()) {
+						for (String key : itemMap.keySet()) {
 							if (i > 10) {
 								break;
 							}
@@ -42,7 +42,7 @@
 						<%
 							
 						%>
-						<h3 class="tit"><%=value%></h3>
+						<h3 class="tit"><a class="link" href="<%=itemMap.get(key)%>"><%=key%></a></h3>
 					</div>
 					<%
 						i++;

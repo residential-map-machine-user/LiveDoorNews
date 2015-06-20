@@ -51,7 +51,7 @@
 								<div class="w-col w-col-3 col-spc">
 									<img class="grid-image" src="<%=request.getContextPath()%>/res/images/feather-05-black.svg"
 										width="80">
-									<h6>記事</h3>
+									<h6><%=relatedLink.get(i).getTitle() %></h3>
 									<a class="link"style="text-decoration:none;font-size:10px;" href="<%=relatedLink.get(i).getUrl()%>">掲載元のページへ</a>
 								</div>
 								<%

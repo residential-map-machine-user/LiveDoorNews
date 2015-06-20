@@ -6,9 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Utils.Util;
 import BaseClasses.BaseController;
 import Constants.AppConstants;
+import Utils.Util;
 
 public class ErrorController extends BaseController {
 	/**
@@ -22,6 +22,7 @@ public class ErrorController extends BaseController {
 		} catch (ServletException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
 		}
 	}
 }

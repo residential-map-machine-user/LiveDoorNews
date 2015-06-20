@@ -3,15 +3,6 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
-<!-- 	<servlet>
-		<servlet-name>SecondController</servlet-name>
-		<servlet-class>dokopro.SecondControllerServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>SecondController</servlet-name>
-		<url-pattern>/page</url-pattern>
-	</servlet-mapping>
-	 -->
 	<servlet>
 		<servlet-name>FrontControllerServlet</servlet-name>
 		<servlet-class>FrontController.FrontControllerServlet</servlet-class>
@@ -20,8 +11,5 @@
 		<servlet-name>FrontControllerServlet</servlet-name>
 		<url-pattern>/front/*</url-pattern>
 	</servlet-mapping>
-	
-	<!-- <servlet> <servlet-name>frontController</servlet-name> <servlet-class>dokopro.FrontControllerServlet</servlet-class> 
-		</servlet> <servlet-mapping> <servlet-name>frontController</servlet-name> 
-		<url-pattern>/</url-pattern> </servlet-mapping> -->
+
 </web-app>

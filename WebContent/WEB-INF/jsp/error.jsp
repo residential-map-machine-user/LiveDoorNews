@@ -14,7 +14,7 @@
         <h1 class="registercomplete">エラーが発生しました</h1>
         <div class="separationyoko"></div>
         <div>
-          <h3>エラーが発生しました。<br>考えられるエラーの原因<br>・権限不足<br>・無効なリクエスト<br><a href="#">ホーム画面へ</a></h3>
+          <h3>エラーが発生しました。
         </div>
       </div>
     </div>

@@ -46,6 +46,8 @@ public class SearchIndex {
 			Document doc = indexSearcher.doc(scoreDoc.doc);
 			// Document の path を取得して出力する
 			ItemBean itemObj = new ItemBean();
+			//[TODO]ここで帰ってきてないとjspに表示はできない
+			Util.l("検索結果"+ doc.get("title")+ doc.get("url"));
 			itemObj.setTitle(doc.get("title"));
 			itemObj.setUrl(doc.get("url"));
 			itemList.add(itemObj);
