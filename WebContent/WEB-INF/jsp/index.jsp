@@ -90,13 +90,9 @@
 		</div>
 		<footer class="w-section footer center">
 			<div class="w-container">
-				<div class="footer-text">Copyright Incredible. Made in
-					Webflow.</div>
+				<div class="footer-text">Copyright YukiMatsuyama</div>
 			</div>
 		</footer>
 	</div>
-	<script type="text/javascript"
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
 </body>
 </html>

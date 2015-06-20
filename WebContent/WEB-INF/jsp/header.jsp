@@ -30,7 +30,8 @@
 	src="<%=request.getContextPath()%>/res/js/webflow.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/res/js/modernizr.js"></script>
-<link rel="shortcut icon" type="<%=request.getContextPath() %>/res/image/x-icon"
+<link rel="shortcut icon"
+	type="<%=request.getContextPath()%>/res/image/x-icon"
 	href="https://daks2k3a4ib2z.cloudfront.net/img/favicon.ico">
 <link rel="apple-touch-icon"
 	href="https://daks2k3a4ib2z.cloudfront.net/img/webclip.png">
@@ -43,21 +44,34 @@
 			href="<%=request.getContextPath()%>/front/news">Home</a><a
 			class="w-nav-link nav-link"
 			href="<%=request.getContextPath()%>/front/news/national">国内</a><a
-			class="w-nav-link nav-link" href="<%=request.getContextPath()%>/front/news/international">海外</a><a
-			class="w-nav-link nav-link" href="<%=request.getContextPath()%>/front/news/economic">IT•経済</a><a
-			class="w-nav-link nav-link" href="<%=request.getContextPath()%>/front/news/entertainment">芸能</a><a
-			class="w-nav-link nav-link" href="<%=request.getContextPath()%>/front/news/sports">スポーツ</a><a
-			class="w-nav-link nav-link" href="<%=request.getContextPath()%>/front/news/movie">映画</a><a
-			class="w-nav-link nav-link" href="<%=request.getContextPath()%>/front/news/food">グルメ</a><a
-			class="w-nav-link nav-link" href="<%=request.getContextPath()%>/front/news/national">国内</a><a
-			class="w-nav-link nav-link" href="<%=request.getContextPath()%>/front/news/women">女子</a><a
-			class="w-nav-link nav-link" href="<%=request.getContextPath()%>/front/news/trend">トレンド</a>
+			class="w-nav-link nav-link"
+			href="<%=request.getContextPath()%>/front/news/international">海外</a><a
+			class="w-nav-link nav-link"
+			href="<%=request.getContextPath()%>/front/news/economic">IT•経済</a><a
+			class="w-nav-link nav-link"
+			href="<%=request.getContextPath()%>/front/news/entertainment">芸能</a><a
+			class="w-nav-link nav-link"
+			href="<%=request.getContextPath()%>/front/news/sports">スポーツ</a><a
+			class="w-nav-link nav-link"
+			href="<%=request.getContextPath()%>/front/news/movie">映画</a><a
+			class="w-nav-link nav-link"
+			href="<%=request.getContextPath()%>/front/news/food">グルメ</a><a
+			class="w-nav-link nav-link"
+			href="<%=request.getContextPath()%>/front/news/national">国内</a><a
+			class="w-nav-link nav-link"
+			href="<%=request.getContextPath()%>/front/news/women">女子</a><a
+			class="w-nav-link nav-link"
+			href="<%=request.getContextPath()%>/front/news/trend">トレンド</a>
 	</nav>
 	<div class="w-nav-button hamburger-button">
 		<div class="w-icon-nav-menu"></div>
 	</div>
 	<div class="w-hidden-medium w-hidden-small w-hidden-tiny social-footer"></div>
 </div>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script type="text/javascript" src="<%=request.getContextPath() %>/res/js/webflow.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/res/js/webflow.js"></script>
+<!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
 </html>

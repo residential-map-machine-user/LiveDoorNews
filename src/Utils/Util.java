@@ -8,10 +8,6 @@ public class Util {
 		System.out.println(k);
 	}
 
-	public static void encrypt(String password) {
-
-	}
-
 	public static String squeeze(String s) {
 		StringBuffer buf = new StringBuffer(s.length());
 
@@ -24,16 +20,17 @@ public class Util {
 		}
 		return buf.toString();
 	}
-	 public static boolean check( String target,String pattern){
-		 Pattern p = Pattern.compile(pattern);   
-		 Matcher m = p.matcher(target);
 
-		    if (m.find()){
-		      System.out.println("マッチします");
-		      return false;
-		    }else{
-		      System.out.println("マッチしません");
-		      return true;
-		    }
-		  }
+	public static boolean check(String target, String pattern) {
+		Pattern p = Pattern.compile(pattern);
+		Matcher m = p.matcher(target);
+
+		if (m.find()) {
+			// System.out.println("マッチします");
+			return false;
+		} else {
+			// System.out.println("マッチしません");
+			return true;
+		}
+	}
 }

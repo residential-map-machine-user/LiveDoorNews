@@ -36,7 +36,7 @@ public class AppConstants {
 	};
 	public static final String TOP = "top";
 	public static final String NATIONAL = "national";
-	public static final String INTERNATIONAL = "INTERNATIONAL";
+	public static final String INTERNATIONAL = "international";
 	public static final String ECONOMIC = "economic";
 	public static final String SPORTS = "sports";
 	public static final String ENTERTAINMENT = "entertainment";

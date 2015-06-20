@@ -11,13 +11,9 @@
 	<jsp:include page="/WEB-INF/jsp/header.jsp" />
 
 	<%
-		Util.l("ok1");
 		String actionName = (String) request.getAttribute("ACTION");
-		Util.l("ok2" + actionName);
 		ArrayList<ItemBean> contents = new ArrayList<ItemBean>();
-		Util.l("ok3");
 		contents = (ArrayList<ItemBean>) request.getAttribute(actionName);
-		Util.l("ok4");
 	%>
 	<div class="content">
 		<div class="w-section section" id="about">
@@ -46,7 +42,7 @@
 							<div class="w-row">
 								<%
 									if (relatedLink != null) {
-												for (int i = 3; i < relatedLink.size(); i=i+3) {
+												for (int i = 2; i < relatedLink.size(); i +=3) {
 								%>
 								<div class="w-col w-col-3 col-spc">
 									<img class="grid-image" src="<%=request.getContextPath()%>/res/images/feather-05-black.svg"
@@ -79,13 +75,10 @@
 		<div class="w-section section section-gray" id="contact"></div>
 		<footer class="w-section footer center">
 			<div class="w-container">
-				<div class="footer-text">Copyright Incredible. Made in
-					Webflow.</div>
+				<div class="footer-text">Copyright Yuki Matsuyama</div>
 			</div>
 		</footer>
 	</div>
-	<script type="text/javascript"
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
+	
 </body>
 </html>

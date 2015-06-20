@@ -24,7 +24,6 @@ import Beans.ItemBean;
 
 public class SearchIndex {
 
-	
 	public List<ItemBean> searchIndex(String inputQuery) throws IOException,
 			ParseException {
 		// 検索文字列を解析するためのパーサーを生成する
@@ -46,13 +45,20 @@ public class SearchIndex {
 			Document doc = indexSearcher.doc(scoreDoc.doc);
 			// Document の path を取得して出力する
 			ItemBean itemObj = new ItemBean();
-			//[TODO]ここで帰ってきてないとjspに表示はできない
-			Util.l("検索結果"+ doc.get("title")+ doc.get("url"));
-			itemObj.setTitle(doc.get("title"));
-			itemObj.setUrl(doc.get("url"));
+			// Util.l("検索結果"+ doc.get("title")+ doc.get("url"));
+			String resultTitle = doc.get("title");
+			String resultUrl = doc.get("url");
+			itemObj.setTitle(resultTitle);
+			itemObj.setUrl(resultUrl);
+//			if (resultTitle != null && resultUrl != null) {
+//				itemObj.setTitle(resultTitle);
+//				itemObj.setUrl(resultUrl);
+//			} else {
+//				Util.l("検索結果にnullが出た");
+//			}
 			itemList.add(itemObj);
 		}
-		Util.l("検索完了");
+		// Util.l("検索完了");
 		indexReader.close();
 		return itemList;
 	}

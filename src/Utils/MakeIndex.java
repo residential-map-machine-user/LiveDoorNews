@@ -24,7 +24,7 @@ public class MakeIndex {
 	public void makeIndexFromText(String url, String title, String article)
 			throws IOException {
 		if (url != null && title != null && article != null && !url.equals("")
-				&& !article.equals("") && !title.equals("")) {
+				&& !article.equals("") && !title.equals("")&&!title.equals("null")) {
 			Directory dir = FSDirectory.open(new File("newsIndex"));
 			// テキストの解析方法（アナライザー）を定義
 			Analyzer analyzer = new GosenAnalyzer(Version.LUCENE_4_9);
