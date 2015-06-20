@@ -12,3 +12,8 @@
 6.移る際は時間がかかる  
 
 
+どんなプロジェクトなのか見たい場合はすでに公開しているので次にURLから  
+
+http://rss-reader-live.cloudapp.net/RSSReader490/front/news  
+
+他のページに遷移するのにしばらくかかります  
