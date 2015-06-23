@@ -23,7 +23,39 @@ import org.apache.lucene.util.Version;
 import Beans.ItemBean;
 
 public class SearchIndex {
-
+	/**
+	 * 検索の実行メソッド
+	 * @param itemList
+	 * @param searchObj
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
+	public List<List<ItemBean>> runSearch(List<ItemBean> itemList,
+			SearchIndex searchObj) throws IOException, ParseException {
+		List<List<ItemBean>> nestedResult = new ArrayList<>();
+		List<ItemBean> resultList = null;
+		for (int i = 0; i < itemList.size(); i++) {
+//			Util.l("検索に渡す中身:" + Util.squeeze(itemList.get(i).getTitle()));
+			resultList = searchObj.searchIndex(Util.squeeze(itemList.get(i)
+					.getTitle()));
+			nestedResult.add(resultList);
+		}
+		// for (ItemBean item : itemList) {
+		// Util.l("検索に渡す中身:" + item.getArticle());
+		// resultUrlList = searchObj.searchIndex(item.getArticle());
+		// nestedResult.add(resultUrlList);
+		// }
+		return nestedResult;
+	}
+	
+	/**
+	 * 
+	 * @param inputQuery
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public List<ItemBean> searchIndex(String inputQuery) throws IOException,
 			ParseException {
 		// 検索文字列を解析するためのパーサーを生成する
@@ -34,7 +66,7 @@ public class SearchIndex {
 		// 検索文字列を解析する
 		Query query = parser.parse(inputQuery);
 		// 検索で使用する IndexSearcher を生成する
-		Directory indexDir = FSDirectory.open(new File("newsIndex"));
+		Directory indexDir = FSDirectory.open(new File("/opt/tomcat7/webapps/newsIndex"));
 		IndexReader indexReader = DirectoryReader.open(indexDir);
 		IndexSearcher indexSearcher = new IndexSearcher(indexReader);
 		// 検索を実行する（第二引数は、検索結果の最大数）
@@ -48,8 +80,10 @@ public class SearchIndex {
 			// Util.l("検索結果"+ doc.get("title")+ doc.get("url"));
 			String resultTitle = doc.get("title");
 			String resultUrl = doc.get("url");
+			String resultArticle = doc.get("article");
 			itemObj.setTitle(resultTitle);
 			itemObj.setUrl(resultUrl);
+			itemObj.setArticle(resultArticle);
 //			if (resultTitle != null && resultUrl != null) {
 //				itemObj.setTitle(resultTitle);
 //				itemObj.setUrl(resultUrl);

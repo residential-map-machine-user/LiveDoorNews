@@ -38,7 +38,7 @@ public class MakeIndex {
 			// インデックスの要素をセット
 			doc.add(new StoredField("url", url));
 			doc.add(new TextField("title", title,Store.YES));
-			doc.add(new TextField("article", article, Store.NO));
+			doc.add(new TextField("article", article, Store.YES));
 			// インデックスを書き出す
 			writer.addDocument(doc);
 			writer.close();

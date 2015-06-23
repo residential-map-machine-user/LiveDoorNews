@@ -3,202 +3,54 @@ package Controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.lucene.queryparser.classic.ParseException;
+
 import BaseClasses.BaseController;
 import Beans.ItemBean;
 import Constants.AppConstants;
 import Utils.ParseText;
-import Utils.RelatedArticle;
+import Utils.SearchIndex;
 
 public class NewsController extends BaseController {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			ParseText parseObj = new ParseText();
-			HashMap<String,String>contentsMap = new HashMap<String, String>();
-			contentsMap = parseObj.parseXmlmod(AppConstants.XML_ARRAY[0]);
-			request.setAttribute(AppConstants.TOP, contentsMap);
-			request.getServletContext()
-					.getRequestDispatcher(
-							AppConstants.FOWARD_PATH.CONST_INDEX_JSP)
-					.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-			goError(request,response);
-		}
-	}
-
-	public void foodAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
-			RelatedArticle relatedObj = new RelatedArticle();
-			ArrayList<ItemBean> contentsList = relatedObj
-					.run(AppConstants.URL_MAP.get(AppConstants.FOOD));
-			request.setAttribute(AppConstants.FOOD, contentsList);
+			String action = (String)request.getAttribute("ACTION");
+			if(action == null || action.equals("")||action.equals("null")){
+				ParseText parseObj = new ParseText();
+				HashMap<String,String>contentsMap = new HashMap<String, String>();
+				contentsMap = parseObj.parseXmlmod(AppConstants.XML_ARRAY[0]);
+				request.setAttribute(AppConstants.TOP, contentsMap);
+			}else{
+				List<ItemBean>contentsList = new ArrayList<>();
+				contentsList = search(request,response);
+				request.setAttribute(action,contentsList);
+			}
 			request.getServletContext()
 					.getRequestDispatcher(
 							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
 					.forward(request, response);
-		} catch (ServletException | IOException e) {
+		} catch (ServletException | IOException | ParseException e) {
 			e.printStackTrace();
 			goError(request,response);
 		}
 	}
-
-	public void topAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
-			RelatedArticle relatedObj = new RelatedArticle();
-			ArrayList<ItemBean> contentsList = relatedObj
-					.run(AppConstants.URL_MAP.get(AppConstants.TOP));
-			request.setAttribute(AppConstants.TOP, contentsList);
-			request.getServletContext()
-					.getRequestDispatcher(
-							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
-					.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-			goError(request,response);
+	
+	public List<ItemBean> search(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException{
+		SearchIndex searchObj = new SearchIndex();
+		ParseText parseObj = new ParseText();
+		String action =(String)request.getAttribute("ACTION");
+		List<ItemBean>contentsList = parseObj.runScrape(AppConstants.URL_MAP.get(action));
+		List<List<ItemBean>>relatedArticle =searchObj.runSearch(contentsList, searchObj);
+		for(int i=0; i<contentsList.size();i++){
+			contentsList.get(i).setRelatedLink(relatedArticle.get(i));
 		}
-	}
-
-	public void nationalAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
-			RelatedArticle relatedObj = new RelatedArticle();
-			ArrayList<ItemBean> contentsList = relatedObj
-					.run(AppConstants.URL_MAP.get(AppConstants.NATIONAL));
-			request.setAttribute(AppConstants.NATIONAL, contentsList);
-			request.getServletContext()
-					.getRequestDispatcher(
-							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
-					.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-			goError(request,response);
-		}
-	}
-
-	public void internationalAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
-			RelatedArticle relatedObj = new RelatedArticle();
-			ArrayList<ItemBean> contentsList = relatedObj
-					.run(AppConstants.URL_MAP.get(AppConstants.INTERNATIONAL));
-			request.setAttribute(AppConstants.INTERNATIONAL, contentsList);
-			request.getServletContext()
-					.getRequestDispatcher(
-							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
-					.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-			goError(request,response);
-		}
-	}
-
-	public void economicAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
-			RelatedArticle relatedObj = new RelatedArticle();
-			ArrayList<ItemBean> contentsList = relatedObj
-					.run(AppConstants.URL_MAP.get(AppConstants.ECONOMIC));
-			request.setAttribute(AppConstants.ECONOMIC, contentsList);
-			request.getServletContext()
-					.getRequestDispatcher(
-							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
-					.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-			goError(request,response);
-		}
-	}
-
-	public void sportsAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
-			RelatedArticle relatedObj = new RelatedArticle();
-			ArrayList<ItemBean> contentsList = relatedObj
-					.run(AppConstants.URL_MAP.get(AppConstants.SPORTS));
-			request.setAttribute(AppConstants.SPORTS, contentsList);
-			request.getServletContext()
-					.getRequestDispatcher(
-							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
-					.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-			goError(request,response);
-		}
-	}
-
-	public void movieAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
-			RelatedArticle relatedObj = new RelatedArticle();
-			ArrayList<ItemBean> contentsList = relatedObj
-					.run(AppConstants.URL_MAP.get(AppConstants.MOVIE));
-			request.setAttribute(AppConstants.MOVIE, contentsList);
-			request.getServletContext()
-					.getRequestDispatcher(
-							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
-					.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-			goError(request,response);
-		}
-	}
-
-	public void entertainmentAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
-			RelatedArticle relatedObj = new RelatedArticle();
-			ArrayList<ItemBean> contentsList = relatedObj
-					.run(AppConstants.URL_MAP.get(AppConstants.ENTERTAINMENT));
-			request.setAttribute(AppConstants.ENTERTAINMENT, contentsList);
-			request.getServletContext()
-					.getRequestDispatcher(
-							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
-					.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-			goError(request,response);
-		}
-	}
-
-	public void womenAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
-			RelatedArticle relatedObj = new RelatedArticle();
-			ArrayList<ItemBean> contentsList = relatedObj
-					.run(AppConstants.URL_MAP.get(AppConstants.WOMEN));
-			request.setAttribute(AppConstants.WOMEN, contentsList);
-			request.getServletContext()
-					.getRequestDispatcher(
-							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
-					.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-			goError(request,response);
-		}
-	}
-
-	public void trendAction(HttpServletRequest request,
-			HttpServletResponse response) {
-		try {
-			RelatedArticle relatedObj = new RelatedArticle();
-			ArrayList<ItemBean> contentsList = relatedObj
-					.run(AppConstants.URL_MAP.get(AppConstants.TREND));
-			request.setAttribute(AppConstants.TREND, contentsList);
-			request.getServletContext()
-					.getRequestDispatcher(
-							AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
-					.forward(request, response);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-			goError(request,response);
-		}
+		return contentsList;
 	}
 }

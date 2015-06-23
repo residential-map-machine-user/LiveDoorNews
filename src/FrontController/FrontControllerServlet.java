@@ -91,8 +91,7 @@ public class FrontControllerServlet extends HttpServlet {
 			IllegalArgumentException, InvocationTargetException {
 		// 実行するメソッドの型指定
 		request.setAttribute("ACTION", uriObj.getActionPath());
-		Method actionMethod = controllerClass.getMethod(
-				convertToActionName(uriObj.getActionPath()),
+		Method actionMethod = controllerClass.getMethod("execute",
 				HttpServletRequest.class, HttpServletResponse.class);
 		// メソッドの実行
 		actionMethod.invoke(controller, request, response);
@@ -136,23 +135,23 @@ public class FrontControllerServlet extends HttpServlet {
 		return controllerPath;
 	}
 
-	/**
-	 * アクションネームのチェックメソッド
-	 * 
-	 * @param request
-	 * @param uri
-	 * @return
-	 */
-	private String convertToActionName(String actionPath) {
-		if (actionPath == null || actionPath.equals("")) {
-			actionPath = "execute";
-			Util.l("アクションの名前>>>>>" + actionPath);
-			return actionPath;
-		}
-		actionPath += "Action";
-		Util.l("アクションの名前>>>>>" + actionPath);
-		return actionPath;
-	}
+//	/**
+//	 * アクションネームのチェックメソッド
+//	 * 
+//	 * @param request
+//	 * @param uri
+//	 * @return
+//	 */
+//	private String convertToActionName(String actionPath) {
+//		if (actionPath == null || actionPath.equals("")) {
+//			actionPath = "execute";
+//			Util.l("アクションの名前>>>>>" + actionPath);
+//			return actionPath;
+//		}
+//		actionPath += "Action";
+//		Util.l("アクションの名前>>>>>" + actionPath);
+//		return actionPath;
+//	}
 
 	/**
 	 * リクエストされたURIをコマンド名にして返すメソッド
