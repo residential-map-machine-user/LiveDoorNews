@@ -11,8 +11,13 @@
 
 6.インデックスを作成する機能をcron jobによってあぷりから分離してキャッシュ高速化
 
-どんなプロジェクトなのか見たい場合はすでに公開しているので次にURLから  
+7.記事を取得するのもcron jobでデータベースに保存する
 
-http://rss-reader-live.cloudapp.net/LiveDoorNews/front/news  
+8.最初接続するときは１分くらいから現在は1秒以下に抑えた。
 
-他のページに遷移するのにしばらくかかります  
+どんなプロジェクトなのか見たい場合はすでに公開しているので次のURLから  
+
+
+http://rss-reader-live.cloudapp.net/live/front/news  
+
+  

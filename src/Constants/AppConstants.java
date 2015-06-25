@@ -85,7 +85,6 @@ public class AppConstants {
 	public static final int women = 8;
 	public static final int trend = 9;
 	
-	public static final String INDEX_PATH = "/Users/yukimatsuyama/eclipse_projects/LiveDoorNews/newsIndex";
-//	public static final String INDEX_PATH = "/opt";
-	public static final String SEARCH_TEXT = "ニュース";
+//	public static final String INDEX_PATH = "/Users/yukimatsuyama/eclipse_projects/LiveDoorNews/newsIndex";
+	public static final String INDEX_PATH = "/home/mattun/AutoIndex";
 }
