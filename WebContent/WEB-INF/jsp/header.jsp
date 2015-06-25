@@ -1,8 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<!-- This site was created in Webflow. http://www.webflow.com-->
-<!-- Last Published: Sun May 10 2015 01:43:47 GMT+0000 (UTC) -->
 <html data-wf-site="5529405753ab13dd4efff00c"
 	data-wf-page="554eb623e47085a40aa28f05">
 <head>
@@ -74,4 +71,3 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/res/js/webflow.js"></script>
 <!--[if lte IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/placeholders/3.0.2/placeholders.min.js"></script><![endif]-->
-</html>

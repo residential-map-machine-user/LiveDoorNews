@@ -21,6 +21,7 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
 import Beans.ItemBean;
+import Constants.AppConstants;
 
 public class SearchIndex {
 	/**
@@ -66,7 +67,7 @@ public class SearchIndex {
 		// 検索文字列を解析する
 		Query query = parser.parse(inputQuery);
 		// 検索で使用する IndexSearcher を生成する
-		Directory indexDir = FSDirectory.open(new File("/opt/tomcat7/webapps/newsIndex"));
+		Directory indexDir = FSDirectory.open(new File(AppConstants.INDEX_PATH));
 		IndexReader indexReader = DirectoryReader.open(indexDir);
 		IndexSearcher indexSearcher = new IndexSearcher(indexReader);
 		// 検索を実行する（第二引数は、検索結果の最大数）
@@ -94,6 +95,7 @@ public class SearchIndex {
 		}
 		// Util.l("検索完了");
 		indexReader.close();
+		indexDir.close();
 		return itemList;
 	}
 }

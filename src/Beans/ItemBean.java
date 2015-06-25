@@ -8,6 +8,13 @@ public class ItemBean {
 	private String article;
 	private String title;
 	private List<ItemBean> relatedLink;
+	private int idCategory;
+	public int getIdCategory() {
+		return idCategory;
+	}
+	public void setIdCategory(int idCategory) {
+		this.idCategory = idCategory;
+	}
 	public String getUrl() {
 		return url;
 	}

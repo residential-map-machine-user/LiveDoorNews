@@ -3,6 +3,8 @@ package FrontController;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import BaseClasses.BaseController;
-import Beans.RequestURIBean;
 import Utils.Util;
 
 public class FrontControllerServlet extends HttpServlet {
@@ -33,17 +34,17 @@ public class FrontControllerServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		setCharacterEncode(request);
-		RequestURIBean uriObj = null;
-		uriObj = spliteURIToArray(request);
+		List<String> splitedURI = spliteURIToList(request);
 		// リクエストされたコントロラーを取得
 		@SuppressWarnings("rawtypes")
-		Class controllerClass = getClass(uriObj);
+		Class controllerClass = getClass(splitedURI.get(0));
 		if (controllerClass != null) {
 			try {
 				BaseController controller = null;
 				// 取得したコントローラーをインスタンス化
 				controller = (BaseController) controllerClass.newInstance();
-				doAction(controllerClass, controller, request, response, uriObj);
+				doAction(controllerClass, controller, request, response,
+						splitedURI.get(1));
 			} catch (InstantiationException | IllegalAccessException e) {
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
@@ -86,11 +87,12 @@ public class FrontControllerServlet extends HttpServlet {
 	 */
 	private void doAction(Class<?> controllerClass, BaseController controller,
 			HttpServletRequest request, HttpServletResponse response,
-			RequestURIBean uriObj) throws NoSuchMethodException,
-			SecurityException, IllegalAccessException,
-			IllegalArgumentException, InvocationTargetException {
-		// 実行するメソッドの型指定
-		request.setAttribute("ACTION", uriObj.getActionPath());
+			String actionName) throws NoSuchMethodException, SecurityException,
+			IllegalAccessException, IllegalArgumentException,
+			InvocationTargetException {
+		actionName = actionName.toLowerCase();
+		request.setAttribute("ACTION", actionName);
+		Util.l("アクションの名前>>>>>" + actionName);
 		Method actionMethod = controllerClass.getMethod("execute",
 				HttpServletRequest.class, HttpServletResponse.class);
 		// メソッドの実行
@@ -102,15 +104,12 @@ public class FrontControllerServlet extends HttpServlet {
 	 * @param request
 	 * @return
 	 */
-	@SuppressWarnings("rawtypes")
-	private Class getClass(RequestURIBean uriObj) {
-		String className = convertToControllerName(uriObj.getControllerPath());
+	private Class getClass(String className) {
+		className = convertToControllerName(className);
 		try {
 			// クラスを取得して返す
-			if (className.equals("NewsController")
-					|| className.equals("IndexController")) {
-				return Class.forName("Controllers." + className);
-			}
+			Util.l("コントローラの名前>>>>>" + className);
+			return Class.forName("Controllers." + className);
 		} catch (ClassNotFoundException notFoundException) {
 			notFoundException.printStackTrace();
 		}
@@ -126,40 +125,21 @@ public class FrontControllerServlet extends HttpServlet {
 	 */
 	private String convertToControllerName(String controllerPath) {
 		if (controllerPath == null || controllerPath.equals("*")) {
-			controllerPath = "IndexController";
-			Util.l("コントローラーの名前>>>>>" + controllerPath);
+			controllerPath = "NewsController";
 			return controllerPath;
 		}
+		controllerPath = controllerPath.substring(0, 1).toUpperCase()
+				+ controllerPath.substring(1);
 		controllerPath += "Controller";
-		Util.l("コントローラーの名前>>>>>" + controllerPath);
 		return controllerPath;
 	}
-
-//	/**
-//	 * アクションネームのチェックメソッド
-//	 * 
-//	 * @param request
-//	 * @param uri
-//	 * @return
-//	 */
-//	private String convertToActionName(String actionPath) {
-//		if (actionPath == null || actionPath.equals("")) {
-//			actionPath = "execute";
-//			Util.l("アクションの名前>>>>>" + actionPath);
-//			return actionPath;
-//		}
-//		actionPath += "Action";
-//		Util.l("アクションの名前>>>>>" + actionPath);
-//		return actionPath;
-//	}
-
+	
 	/**
-	 * リクエストされたURIをコマンド名にして返すメソッド
 	 * 
 	 * @param request
-	 * @return RequestURIBean パスの入ったインスタンス
+	 * @return
 	 */
-	private RequestURIBean spliteURIToArray(HttpServletRequest request) {
+	private List<String> spliteURIToList(HttpServletRequest request) {
 		// リクエストURI
 		String uriPath = request.getRequestURI();
 		Util.l("URIパス>>>>>" + uriPath);
@@ -169,16 +149,18 @@ public class FrontControllerServlet extends HttpServlet {
 		// パスを分解
 		String[] splitedPath = uriPath.replace(contextPath + "/front/", "")
 				.split("/");
+		List<String> splitedURI = new ArrayList<>();
+		if(splitedPath ==null){
+			splitedPath = new String[2];
+		}
 		// デバッグ
 		for (int i = 0; i < splitedPath.length; i++) {
+			splitedURI.add(splitedPath[i]);
 			Util.l("スプライト後の結果>>>>" + "[" + i + "]" + splitedPath[i]);
 		}
-		RequestURIBean uriObj = new RequestURIBean();
-		uriObj.setControllerPath(splitedPath[0].substring(0, 1).toUpperCase()
-				+ splitedPath[0].substring(1));
-		if (splitedPath.length > 1) {
-			uriObj.setActionPath(splitedPath[1].toLowerCase());
+		if (splitedURI.size() < 2) {
+			splitedURI.add("execute");
 		}
-		return uriObj;
+		return splitedURI;
 	}
 }

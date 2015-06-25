@@ -18,6 +18,7 @@ import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
 import Beans.ItemBean;
+import Constants.AppConstants;
 
 public class MakeIndex {
 
@@ -25,7 +26,7 @@ public class MakeIndex {
 			throws IOException {
 		if (url != null && title != null && article != null && !url.equals("")
 				&& !article.equals("") && !title.equals("")&&!title.equals("null")) {
-			Directory dir = FSDirectory.open(new File("newsIndex"));
+			Directory dir = FSDirectory.open(new File(AppConstants.INDEX_PATH));
 			// テキストの解析方法（アナライザー）を定義
 			Analyzer analyzer = new GosenAnalyzer(Version.LUCENE_4_9);
 			// 解析方法の設定
@@ -42,6 +43,7 @@ public class MakeIndex {
 			// インデックスを書き出す
 			writer.addDocument(doc);
 			writer.close();
+			dir.close();
 		}
 	}
 

@@ -10,8 +10,7 @@ public class AutoIndex {
 		MakeIndex indexObj = new MakeIndex();
 		try {
 			for (int i = 0; i < AppConstants.XML_ARRAY.length; i++) {
-				indexObj.makeIndexFromBeanList(parseObj
-						.runScrape(AppConstants.XML_ARRAY[i]));
+				indexObj.makeIndexFromBeanList(parseObj.runScrape(AppConstants.XML_ARRAY[i],i));
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
