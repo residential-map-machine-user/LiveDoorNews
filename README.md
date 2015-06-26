@@ -18,6 +18,6 @@
 どんなプロジェクトなのか見たい場合はすでに公開しているので次のURLから  
 
 9.一時間に一回更新してます。更新は**:30 のときに行うのでそのときにアクセスすると記事が表示されないことも
-http://rss-reader-live.cloudapp.net/live/front/news  
+http://rss-reader-live.cloudapp.net/live2/front/news  
 
   
