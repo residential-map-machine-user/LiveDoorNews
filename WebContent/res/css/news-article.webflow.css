@@ -8,6 +8,7 @@ body {
   line-height: 20px;
 }
 h1 {
+	padding:20px;
   margin-bottom: 10px;
   font-size: 28px;
   line-height: 44px;
@@ -46,6 +47,7 @@ h6 {
   font-weight: 700;
 }
 p {
+	padding:30px;
   margin-bottom: 10px;
   font-family:'Droid Sans', sans-serif;
   font-size: 15px;
@@ -416,6 +418,7 @@ html.w-mod-js *[data-ix="scale-on-scroll"] {
     width: 33.333%;
   }
   .col-spc {
+  	margin-left:0;
     margin-bottom: 15px;
     text-align: center;
   }
