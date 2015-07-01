@@ -42,6 +42,7 @@ public class SearchIndex {
 					.getTitle()));
 			nestedResult.add(resultList);
 		}
+		//ここでdb登録
 		// for (ItemBean item : itemList) {
 		// Util.l("検索に渡す中身:" + item.getArticle());
 		// resultUrlList = searchObj.searchIndex(item.getArticle());
@@ -59,15 +60,15 @@ public class SearchIndex {
 	 */
 	public List<ItemBean> searchIndex(String inputQuery) throws IOException,
 			ParseException {
-		// 検索文字列を解析するためのパーサーを生成する
+		//形態素解析を行うオブジェクト
 		Analyzer analyzer = new GosenAnalyzer(Version.LUCENE_4_9);
-		// 検索対象のフィールドを第二引数で指定している
+		// 記事の内容で解析
 		QueryParser parser = new QueryParser(Version.LUCENE_4_9, "article",
 				analyzer);
 		// 検索文字列を解析する
 		Query query = parser.parse(inputQuery);
 		// 検索で使用する IndexSearcher を生成する
-		Directory indexDir = FSDirectory.open(new File(AppConstants.INDEX_PATH));
+		Directory indexDir = FSDirectory.open(new File(AppConstants.SEARCH_INDEX_PATH));
 		IndexReader indexReader = DirectoryReader.open(indexDir);
 		IndexSearcher indexSearcher = new IndexSearcher(indexReader);
 		// 検索を実行する（第二引数は、検索結果の最大数）

@@ -7,6 +7,13 @@ public class ItemBean {
 	private String url;
 	private String article;
 	private String title;
+	private int idArticle;
+	public int getIdArticle() {
+		return idArticle;
+	}
+	public void setIdArticle(int idArticle) {
+		this.idArticle = idArticle;
+	}
 	private List<ItemBean> relatedLink;
 	private int idCategory;
 	public int getIdCategory() {

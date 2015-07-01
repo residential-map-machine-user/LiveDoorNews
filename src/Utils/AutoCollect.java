@@ -16,7 +16,11 @@ public class AutoCollect {
 		for(int i = 0;i < AppConstants.XML_ARRAY.length; i++){
 			List<ItemBean> itemList = null;
 			//この時点で記事は全部取得できているのでここにidCategoryをつけて記事に保存する.
-			itemList = parseObj.runScrape(AppConstants.XML_ARRAY[i],i);
+			if(AppConstants.XML_ARRAY[i] != null){
+				itemList = parseObj.runScrape(AppConstants.XML_ARRAY[i],i);
+			}else{
+				continue;
+			}
 			for(ItemBean item:itemList){
 				if(checkParameter(item)){
 					daoObj.addArticle(item.getTitle(), item.getUrl(), item.getArticle(), item.getIdCategory());

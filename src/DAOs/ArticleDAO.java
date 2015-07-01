@@ -50,6 +50,7 @@ public class ArticleDAO extends BaseDAO {
 				item.setArticle(rs.getString("article"));
 				item.setTitle(rs.getString("title"));
 				item.setUrl(rs.getString("url"));
+				item.setIdArticle(rs.getInt("id_article"));
 				articleList.add(item);
 			}
 		} catch (SQLException e) {
@@ -68,6 +69,27 @@ public class ArticleDAO extends BaseDAO {
 		try {
 			PreparedStatement pr = conn.prepareStatement(sql);
 			int cnt = 1;
+			successNum = pr.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			finishConnection();
+		}
+		return successNum;
+	}
+	
+	public int addRelatedArticle(int articleId, String title,String url,String article){
+		int successNum = 0;
+		startConnection();
+		String sql = "INSERT INTO table_relate_article (article_id,title,url,article) values(?,?,?,?);";
+		try {
+			PreparedStatement pr = conn.prepareStatement(sql);
+			int cnt = 1;
+			pr.setInt(cnt++,articleId);
+			pr.setString(cnt++, title);
+			pr.setString(cnt++, url);
+			pr.setString(cnt++, article);
 			successNum = pr.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

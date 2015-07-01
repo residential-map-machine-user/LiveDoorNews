@@ -33,7 +33,9 @@ public class AppConstants {
 			"http://news.livedoor.com/rss/summary/52.xml",
 			"http://news.livedoor.com/topics/rss/gourmet.xml",
 			"http://news.livedoor.com/topics/rss/love.xml",
-			"http://news.livedoor.com/topics/rss/trend.xml" };
+			"http://news.livedoor.com/topics/rss/trend.xml"
+	};
+	
 	public static final String TOP = "top";
 	public static final String NATIONAL = "national";
 	public static final String INTERNATIONAL = "international";
@@ -86,5 +88,6 @@ public class AppConstants {
 	public static final int trend = 9;
 	
 //	public static final String INDEX_PATH = "/Users/yukimatsuyama/eclipse_projects/LiveDoorNews/newsIndex";
+	public static final String SEARCH_INDEX_PATH = "/opt/newsIndex";
 	public static final String INDEX_PATH = "/home/mattun/AutoIndex/newsIndex";
 }

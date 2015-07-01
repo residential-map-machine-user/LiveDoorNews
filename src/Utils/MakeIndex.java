@@ -27,20 +27,15 @@ public class MakeIndex {
 		if (url != null && title != null && article != null && !url.equals("")
 				&& !article.equals("") && !title.equals("")&&!title.equals("null")) {
 			Directory dir = FSDirectory.open(new File(AppConstants.INDEX_PATH));
-			// テキストの解析方法（アナライザー）を定義
 			Analyzer analyzer = new GosenAnalyzer(Version.LUCENE_4_9);
-			// 解析方法の設定
 			IndexWriterConfig iws = new IndexWriterConfig(Version.LUCENE_4_9,
 					analyzer);
-			// インデックスが既に存在する場合の動作を定義する
 			iws.setOpenMode(OpenMode.CREATE_OR_APPEND);
 			IndexWriter writer = new IndexWriter(dir, iws);
 			Document doc = new Document();
-			// インデックスの要素をセット
 			doc.add(new StoredField("url", url));
 			doc.add(new TextField("title", title,Store.YES));
 			doc.add(new TextField("article", article, Store.YES));
-			// インデックスを書き出す
 			writer.addDocument(doc);
 			writer.close();
 			dir.close();
