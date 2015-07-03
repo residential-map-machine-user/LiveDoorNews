@@ -54,8 +54,6 @@
 			class="w-nav-link nav-link"
 			href="<%=request.getContextPath()%>/front/news/food">グルメ</a><a
 			class="w-nav-link nav-link"
-			href="<%=request.getContextPath()%>/front/news/national">国内</a><a
-			class="w-nav-link nav-link"
 			href="<%=request.getContextPath()%>/front/news/women">女子</a><a
 			class="w-nav-link nav-link"
 			href="<%=request.getContextPath()%>/front/news/trend">トレンド</a>

@@ -18,7 +18,7 @@
 
 						List<ItemBean> contents = new ArrayList<ItemBean>();
 						if (request.getAttribute(actionName) instanceof List<?>) {
-							contents = (ArrayList<ItemBean>) request
+							contents = (List<ItemBean>) request
 									.getAttribute(actionName);
 						}
 					%>

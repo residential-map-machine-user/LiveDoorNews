@@ -38,8 +38,8 @@ public class SearchIndex {
 		List<ItemBean> resultList = null;
 		for (int i = 0; i < itemList.size(); i++) {
 //			Util.l("検索に渡す中身:" + Util.squeeze(itemList.get(i).getTitle()));
-			resultList = searchObj.searchIndex(Util.squeeze(itemList.get(i)
-					.getTitle()));
+			resultList = searchObj.searchIndex(Util.modifyInputQuery(Util.squeeze(itemList.get(i)
+					.getTitle())));
 			nestedResult.add(resultList);
 		}
 		//ここでdb登録

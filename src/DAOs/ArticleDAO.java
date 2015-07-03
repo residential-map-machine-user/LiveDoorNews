@@ -13,8 +13,7 @@ public class ArticleDAO extends BaseDAO {
 	public ArticleDAO() {
 	}
 
-	public int addArticle(String title, String url, String article,
-			int idCategory) {
+	public int addArticle(String title, String url, String article, int idCategory) {
 		startConnection();
 		int successNum = 0;
 		String sql = "INSERT INTO table_article (title,url,article,id_category) values(?,?,?,?);";
@@ -78,15 +77,15 @@ public class ArticleDAO extends BaseDAO {
 		}
 		return successNum;
 	}
-	
-	public int addRelatedArticle(int articleId, String title,String url,String article){
+
+	public int addRelatedArticle(int articleId, String title, String url, String article) {
 		int successNum = 0;
 		startConnection();
-		String sql = "INSERT INTO table_relate_article (article_id,title,url,article) values(?,?,?,?);";
+		String sql = "INSERT INTO table_relate_article (id_article,title,url,article) values(?,?,?,?);";
 		try {
 			PreparedStatement pr = conn.prepareStatement(sql);
 			int cnt = 1;
-			pr.setInt(cnt++,articleId);
+			pr.setInt(cnt++, articleId);
 			pr.setString(cnt++, title);
 			pr.setString(cnt++, url);
 			pr.setString(cnt++, article);
@@ -99,4 +98,35 @@ public class ArticleDAO extends BaseDAO {
 		}
 		return successNum;
 	}
+
+	public List<ItemBean> selectRelateArticleByContentsList(List<ItemBean> contentsList) {
+		List<ItemBean> bufferContents = contentsList;
+		ResultSet rs = null;
+		for (int i = 0; i < contentsList.size(); i++) {
+			startConnection();
+			String sql = "SELECT * FROM table_relate_article WHERE id_article =?;";
+			try {
+				PreparedStatement pr = conn.prepareStatement(sql);
+				int cnt = 1;
+				pr.setInt(cnt++, contentsList.get(i).getIdArticle());
+				rs = pr.executeQuery();
+				List<ItemBean> relatedLink = new ArrayList<>();
+				while (rs.next()) {
+					ItemBean item = new ItemBean();
+					item.setUrl(rs.getString("url"));
+					item.setTitle(rs.getString("title"));
+					item.setArticle(rs.getString("article"));
+					relatedLink.add(item);
+				}
+				bufferContents.get(i).setRelatedLink(relatedLink);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				finishConnection();
+			}
+		}
+		return bufferContents;
+	}
+
 }

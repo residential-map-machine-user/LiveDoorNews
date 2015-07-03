@@ -8,32 +8,36 @@ import Constants.AppConstants;
 import DAOs.ArticleDAO;
 
 public class AutoCollect {
-	public static void main(String[] args){
+	/**
+	 *　記事を取得してくるメソッド
+	 * @param args
+	 */
+	public static void main(String[] args) {
 		ParseText parseObj = new ParseText();
-		
 		ArticleDAO daoObj = new ArticleDAO();
+		AutoSearch searchObj = new AutoSearch();
+		//データベースの初期化　デバッグ用
 		daoObj.deleteArticle();
-		for(int i = 0;i < AppConstants.XML_ARRAY.length; i++){
+		for (int i = 0; i < AppConstants.XML_ARRAY.length; i++) {
 			List<ItemBean> itemList = null;
-			//この時点で記事は全部取得できているのでここにidCategoryをつけて記事に保存する.
-			if(AppConstants.XML_ARRAY[i] != null){
-				itemList = parseObj.runScrape(AppConstants.XML_ARRAY[i],i);
-			}else{
-				continue;
+			//カテゴリ記事の記事一覧を取得
+			itemList = parseObj.runScrape(AppConstants.XML_ARRAY[i], i);
+			for (ItemBean item : itemList) {
+				//データベースに記事を保存
+				int successNum = daoObj.addArticle(item.getTitle(), item.getUrl(), item.getArticle(), item.getIdCategory());
+				//記事に対して関連の記事を検索してデータベースに保存
+//				searchObj.autoSearch(itemList);
 			}
-			for(ItemBean item:itemList){
-				if(checkParameter(item)){
-					daoObj.addArticle(item.getTitle(), item.getUrl(), item.getArticle(), item.getIdCategory());
-				}else{
-					continue;
-				}
-			}
-			daoObj.finishConnection();
 		}
 	}
 	
-	public static boolean checkParameter(ItemBean item){
-		if(item.getTitle() != null&& item.getUrl()!= null&& item.getArticle() != null){
+	/**
+	 * 記事のパラメータがヌルでないかをチェック
+	 * @param item
+	 * @return
+	 */
+	public static boolean checkParameter(ItemBean item) {
+		if (item.getTitle() != null && item.getUrl() != null && item.getArticle() != null) {
 			return true;
 		}
 		return false;

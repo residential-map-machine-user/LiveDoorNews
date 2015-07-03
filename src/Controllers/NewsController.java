@@ -23,7 +23,7 @@ public class NewsController extends BaseController {
 		try {
 			if (action == null || action.equals("") || action.equals("null")|| action.equals("execute")) {
 				action = AppConstants.TOP;
-				ArrayList<ItemBean> contentsList = new ArrayList<>();
+				List<ItemBean> contentsList = new ArrayList<>();
 				contentsList = searchFromAction(action);
 				request.setAttribute(AppConstants.TOP, contentsList);
 				request.setAttribute("ACTION", action);
@@ -32,7 +32,7 @@ public class NewsController extends BaseController {
 								AppConstants.FOWARD_PATH.CONST_DETAIL_CATEGORY_JSP)
 						.forward(request, response);
 			} else {
-				ArrayList<ItemBean> contentsList = new ArrayList<>();
+				List<ItemBean> contentsList = new ArrayList<>();
 				contentsList = searchFromAction(action);
 				request.setAttribute(action, contentsList);
 				request.getServletContext()
@@ -46,11 +46,12 @@ public class NewsController extends BaseController {
 		}
 	}
 
-	public ArrayList<ItemBean> searchFromAction(String action) throws IOException,
+	public List<ItemBean> searchFromAction(String action) throws IOException,
 			ParseException {
 		SearchIndex searchObj = new SearchIndex();
 		ArticleDAO daoObj = new ArticleDAO();
-		ArrayList<ItemBean> contentsList = daoObj
+		List<ItemBean> contentsList = new ArrayList<>();
+		contentsList = daoObj
 				.selectArticleByCategoryId(AppConstants.CATEGORY_MAP
 						.get(action));
 		List<List<ItemBean>> relatedArticle = searchObj.runSearch(contentsList,
@@ -58,6 +59,9 @@ public class NewsController extends BaseController {
 		for (int i = 0; i < contentsList.size(); i++) {
 			contentsList.get(i).setRelatedLink(relatedArticle.get(i));
 		}
+//		contentsList = daoObj.selectRelateArticleByContentsList(daoObj
+//				.selectArticleByCategoryId(AppConstants.CATEGORY_MAP
+//						.get(action)));
 		return contentsList;
 	}
 }
